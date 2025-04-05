@@ -12,6 +12,7 @@ function App() {
   const [tone, setTone] = useState("professional");
   const [contentType, setContentType] = useState("text");
   const [mediaStyle, setMediaStyle] = useState("realistic");
+  const [programmingLanguage, setProgrammingLanguage] = useState("javascript");
 
   // State for the generated prompt and loading status
   const [generatedPrompt, setGeneratedPrompt] = useState("");
@@ -52,9 +53,29 @@ function App() {
         Additional Context: ${additionalContext}
         Tone: ${tone}
         Content Type: ${contentType}
-        Media Style: ${mediaStyle}
+        ${
+          contentType === "image" || contentType === "video"
+            ? `Media Style: ${mediaStyle}`
+            : ""
+        }
+        ${
+          contentType === "coding"
+            ? `Programming Language: ${programmingLanguage}`
+            : ""
+        }
         
         Format the prompt in a clear, concise manner that will produce the most effective response.
+        ${
+          contentType === "coding"
+            ? `For coding requests, include specific instructions about:
+          - Programming language: ${programmingLanguage}
+          - Code structure and organization
+          - Best practices to follow for ${programmingLanguage}
+          - Level of code comments and documentation
+          - Any specific libraries or dependencies to include
+          - Error handling requirements`
+            : ""
+        }
         And please try to include only the generated prompt without any additional text.
         The generated prompt should be in a details.
       `;
@@ -215,6 +236,7 @@ function App() {
                 <option value="image">Image</option>
                 <option value="video">Video</option>
                 <option value="audio">Audio</option>
+                <option value="coding">Coding</option>
               </select>
             </div>
 
@@ -234,6 +256,43 @@ function App() {
                   <option value="minimalistic">Minimalistic</option>
                   <option value="3d-render">3D Render</option>
                   <option value="artistic">Artistic</option>
+                </select>
+              </div>
+            )}
+
+            {contentType === "coding" && (
+              <div className="form-group">
+                <label htmlFor="programmingLanguage">
+                  Programming Language
+                </label>
+                <select
+                  id="programmingLanguage"
+                  value={programmingLanguage}
+                  onChange={(e) => setProgrammingLanguage(e.target.value)}
+                >
+                  <option value="javascript">JavaScript</option>
+                  <option value="typescript">TypeScript</option>
+                  <option value="python">Python</option>
+                  <option value="java">Java</option>
+                  <option value="csharp">C#</option>
+                  <option value="cpp">C++</option>
+                  <option value="go">Go</option>
+                  <option value="rust">Rust</option>
+                  <option value="php">PHP</option>
+                  <option value="ruby">Ruby</option>
+                  <option value="swift">Swift</option>
+                  <option value="kotlin">Kotlin</option>
+                  <option value="scala">Scala</option>
+                  <option value="r">R</option>
+                  <option value="dart">Dart</option>
+                  <option value="html">HTML</option>
+                  <option value="css">CSS</option>
+                  <option value="sql">SQL</option>
+                  <option value="shell">Shell/Bash</option>
+                  <option value="perl">Perl</option>
+                  <option value="lua">Lua</option>
+                  <option value="haskell">Haskell</option>
+                  <option value="clojure">Clojure</option>
                 </select>
               </div>
             )}
