@@ -1,5 +1,6 @@
 import { useState } from "react";
 import "./App.css";
+import Notification from "./components/Notification";
 
 function App() {
   // State for input fields
@@ -16,6 +17,13 @@ function App() {
   const [generatedPrompt, setGeneratedPrompt] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState("");
+
+  // New state for notification
+  const [notification, setNotification] = useState({
+    show: false,
+    message: "",
+    type: "success",
+  });
 
   // Handle form submission
   const handleSubmit = async (e) => {
@@ -97,7 +105,17 @@ function App() {
   // Handle copying the prompt to clipboard
   const handleCopy = () => {
     navigator.clipboard.writeText(generatedPrompt);
-    alert("Prompt copied to clipboard!");
+    // Show notification instead of alert
+    setNotification({
+      show: true,
+      message: "Prompt copied to clipboard!",
+      type: "success",
+    });
+
+    // Hide notification after it's done
+    setTimeout(() => {
+      setNotification({ show: false, message: "", type: "success" });
+    }, 3300); // slightly longer than the notification duration
   };
 
   return (
@@ -253,6 +271,17 @@ function App() {
           AI
         </p>
       </footer>
+
+      {/* Render notification when show is true */}
+      {notification.show && (
+        <Notification
+          message={notification.message}
+          type={notification.type}
+          onClose={() =>
+            setNotification({ show: false, message: "", type: "success" })
+          }
+        />
+      )}
     </div>
   );
 }
