@@ -332,13 +332,16 @@ function App() {
               {isLoading ? "Generating..." : "Generate Optimized Prompt"}
             </button>
 
-            <button
-              type="button"
-              className="new-prompt-button"
-              onClick={handleNewPrompt}
-            >
-              New Prompt
-            </button>
+            {/* Only show the New Prompt button if a prompt has been generated */}
+            {generatedPrompt && (
+              <button
+                type="button"
+                className="new-prompt-button"
+                onClick={handleNewPrompt}
+              >
+                New Prompt
+              </button>
+            )}
 
             {error && <div className="error-message">{error}</div>}
           </form>
