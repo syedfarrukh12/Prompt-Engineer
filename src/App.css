@@ -126,6 +126,7 @@ small {
   font-weight: 600;
   cursor: pointer;
   transition: background-color 0.3s ease;
+  margin-bottom: 1rem;
 }
 
 .generate-button:hover {
@@ -135,6 +136,23 @@ small {
 .generate-button:disabled {
   background-color: #cccccc;
   cursor: not-allowed;
+}
+
+.new-prompt-button {
+  grid-column: 1 / -1;
+  background-color: #e67e22;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  padding: 1rem;
+  font-size: 1rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.new-prompt-button:hover {
+  background-color: #d35400;
 }
 
 .error-message {

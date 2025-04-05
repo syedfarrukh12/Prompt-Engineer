@@ -26,6 +26,33 @@ function App() {
     type: "success",
   });
 
+  // Function to clear all form fields
+  const handleNewPrompt = () => {
+    setTopic("");
+    setAudience("");
+    setComplexity("intermediate");
+    setPurpose("");
+    setAdditionalContext("");
+    setTone("professional");
+    setContentType("text");
+    setMediaStyle("realistic");
+    setProgrammingLanguage("javascript");
+    setGeneratedPrompt("");
+    setError("");
+
+    // Show notification
+    setNotification({
+      show: true,
+      message: "Form cleared! Start a new prompt.",
+      type: "success",
+    });
+
+    // Hide notification after it's done
+    setTimeout(() => {
+      setNotification({ show: false, message: "", type: "success" });
+    }, 3300);
+  };
+
   // Handle form submission
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -303,6 +330,14 @@ function App() {
               disabled={isLoading}
             >
               {isLoading ? "Generating..." : "Generate Optimized Prompt"}
+            </button>
+
+            <button
+              type="button"
+              className="new-prompt-button"
+              onClick={handleNewPrompt}
+            >
+              New Prompt
             </button>
 
             {error && <div className="error-message">{error}</div>}
