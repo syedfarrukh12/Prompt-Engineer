@@ -71,7 +71,7 @@ function App() {
       // Construct the system prompt to generate an optimized prompt
       const systemPrompt = `
         You are an expert prompt engineer. Based on the following information, create
-        an optimized prompt for Gemini AI that will produce the best possible results:
+        a detailed and optimized prompt for Gemini AI that will produce the best possible results:
         
         Topic: ${topic}
         Target Audience: ${audience}
@@ -104,7 +104,7 @@ function App() {
             : ""
         }
         And please try to include only the generated prompt without any additional text.
-        The generated prompt should be in a details.
+        The generated prompt should be detailed.
       `;
 
       // Make direct API call to Gemini API
