@@ -283,6 +283,7 @@ function App() {
                   <option value="minimalistic">Minimalistic</option>
                   <option value="3d-render">3D Render</option>
                   <option value="artistic">Artistic</option>
+                  <option value="studio ghibli">Studio Ghibli</option>
                 </select>
               </div>
             )}
