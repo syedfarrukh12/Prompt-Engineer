@@ -19,6 +19,14 @@ pipeline {
                 sh 'npm run build'
             }
         }
+
+        stage('Archive') {
+            steps {
+                echo 'Archiving artifacts...'
+                sh 'mkdir -p output && echo "Built at $(date)" > output/build.txt'
+                archiveArtifacts artifacts: 'output/**/*', allowEmptyArchive: true
+            }
+        }
     }
 
     post {
