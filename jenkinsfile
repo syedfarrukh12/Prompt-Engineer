@@ -1,8 +1,8 @@
 pipeline {
     agent any
 
-     environment {
-        PATH = "/Users/apple/.nvm/versions/node/v20.11.1/bin:$PATH"
+    tools {
+        nodejs 'Node 20'
     }
 
     stages {
@@ -18,6 +18,18 @@ pipeline {
                 echo 'Building project...'
                 sh 'npm run build'
             }
+        }
+    }
+
+    post {
+        success {
+            echo 'Build successful'
+        }
+        failure {
+            echo 'Build failed'
+        }
+        always {
+            echo '🛠 Build complete.'
         }
     }
 }
