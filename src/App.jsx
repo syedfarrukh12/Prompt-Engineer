@@ -71,7 +71,7 @@ function App() {
       // Construct the system prompt to generate an optimized prompt
       const systemPrompt = `
         You are an expert prompt engineer. Based on the following information, create
-        a detailed and optimized prompt for Gemini AI that will produce the best possible results:
+        a detailed and optimized prompt for AI LLM agents that will produce the best possible results:
         
         Topic: ${topic}
         Target Audience: ${audience}
